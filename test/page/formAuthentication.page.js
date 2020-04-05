@@ -1,4 +1,9 @@
-class FormAuthentication {
+import Page from "./page";
+import elementUtil from './../util/elementUtil';
+
+class FormAuthenticationPage extends Page {
+  open(path) { super.open('login'); }
+
   get pageHeader() { return $('//h2'); }
   get usernameInput() { return $('//input[@id="username"]'); }
   get passwordInput() { return $('//input[@id="password"]'); }
@@ -7,10 +12,10 @@ class FormAuthentication {
   get notificationMsg() { return $('//div[@id="flash"]'); }
 
   login(userName, password) {
-    this.usernameInput.setValue(userName);
-    this.passwordInput.setValue(password);
-    this.submitBtn.click();
+    elementUtil.doSetValue(this.usernameInput, userName);
+    elementUtil.doSetValue(this.passwordInput, password);
+    elementUtil.doClick(this.submitBtn);
   }
 }
 
-module.exports = new FormAuthentication();
+export default new FormAuthenticationPage();

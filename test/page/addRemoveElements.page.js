@@ -1,4 +1,7 @@
-class AddRemoveElements {
+import Page from "./page";
+
+class AddRemoveElementsPage extends Page {
+  open(path) { super.open('add_remove_elements/'); }
 
   get pageHeader() { return $('//h3'); }
   get addBtn() { return $('//div[@class="example"]/button'); }
@@ -11,4 +14,4 @@ class AddRemoveElements {
 
 }
 
-module.exports = new AddRemoveElements();
+export default new AddRemoveElementsPage();

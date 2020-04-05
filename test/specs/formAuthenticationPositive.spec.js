@@ -1,34 +1,32 @@
-import formAuthentication from './../page/formAuthentication.page';
+import FormAuthenticationPage from './../page/formAuthentication.page';
+import formAuthenticationData from './../data/formAuthentication.data';
 import elementUtil from './../util/elementUtil';
 import { userPass } from './../data/user.data';
-import formAuthenticationData from './../data/formAuthentication.data';
 
-describe('Form Authentication', function () {
-  it('should load page and verify correct url', function () {
-    browser.url('login');
-    expect(browser.getUrl()).equal(`${browser.options.baseUrl}login`);
+describe('Form Authentication - Positive', function () {
+  this.retries(2);
+
+  it('should load page and verify correct page header', function () {
+    FormAuthenticationPage.open();
+    expect(elementUtil.elementText(FormAuthenticationPage.pageHeader)).equal(formAuthenticationData.pageHeader);
   });
 
-  it('should verify correct text page header', function () {
-    expect(elementUtil.elementText(formAuthentication.pageHeader)).equal(formAuthenticationData.pageHeader);
-  });
-
-  it('should login', function () {
-    formAuthentication.login(userPass.userName, userPass.password);
-    expect(elementUtil.elementText(formAuthentication.pageHeader)).equal(formAuthenticationData.secureArea)
+  it('should login with correct username and password ', function () {
+    FormAuthenticationPage.login(userPass.userName, userPass.password);
+    expect(elementUtil.elementText(FormAuthenticationPage.pageHeader)).equal(formAuthenticationData.secureArea);
   });
 
   it('should display login notification message', function () {
-    expect(elementUtil.elementText(formAuthentication.notificationMsg)).equal(formAuthenticationData.notificationLoginMsg)
+    expect(elementUtil.elementText(FormAuthenticationPage.notificationMsg)).equal(formAuthenticationData.notificationLoginMsg);
   });
 
   it('should logout', function () {
-    elementUtil.doClick(formAuthentication.logoutBtn);
-    expect(elementUtil.elementText(formAuthentication.pageHeader)).equal(formAuthenticationData.pageHeader);
+    elementUtil.doClick(FormAuthenticationPage.logoutBtn);
+    expect(elementUtil.elementText(FormAuthenticationPage.pageHeader)).equal(formAuthenticationData.pageHeader);
   });
 
   it('should display logout notification message', function () {
-    expect(elementUtil.elementText(formAuthentication.notificationMsg)).equal(formAuthenticationData.notificationLogoutMsg)
+    expect(elementUtil.elementText(FormAuthenticationPage.notificationMsg)).equal(formAuthenticationData.notificationLogoutMsg);
   });
 });
 

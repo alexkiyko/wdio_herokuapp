@@ -1,4 +1,8 @@
-class Dropdown {
+import Page from "./page";
+
+class DropdownPage extends Page {
+  open(path) { super.open('dropdown'); }
+
   get pageHeader() { return $('//h3'); }
   get dropdownMenu() { return $('//select[@id="dropdown"]'); }
   get option1() { return $('//option[contains(text(),"Option 1")]'); }
@@ -15,4 +19,4 @@ class Dropdown {
   }
 }
 
-module.exports = new Dropdown();
+export default new DropdownPage();

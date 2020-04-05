@@ -1,6 +1,6 @@
 class ElementUtil {
   elementText(element) {
-    element.waitForDisplayed();
+    element.waitForDisplayed(5000);
     return element.getText()
   }
 
@@ -17,6 +17,11 @@ class ElementUtil {
   doIsDisplayed(element) {
     element.waitForDisplayed();
     return element.isDisplayed();
+  }
+
+  doIsEnabled(element) {
+    element.waitForDisplayed();
+    return element.isEnabled();
   }
 }
 
